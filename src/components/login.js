@@ -78,6 +78,11 @@ class LoginView extends Component {
         >
           <Text>Register</Text>
         </TouchableHighlight>
+
+        <Button
+        title="go to new screen"
+        
+      />
       </View>
     );
   }
