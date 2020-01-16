@@ -12,18 +12,8 @@ import {
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 
-class ProfileScreen extends Component {
-  static navigationOptions = {
-    title: "New Screen"
-  };
-  render() {
-    return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Profile Screen</Text>
-      </View>
-    );
-  }
-}
+import ProfileScreen from './dashboard';
+
 
 class LoginView extends Component {
   static navigationOptions = {
