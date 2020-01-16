@@ -88,7 +88,7 @@ class LoginView extends Component {
         </TouchableHighlight>
 
         <Button
-          title="go to new screen"
+          title="go to dashboard"
           onPress={() => this.props.navigation.navigate("Profile")}
         />
       </View>
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
 });
 
 const AppNavigator = createStackNavigator({
-  Home: { screen: LoginView, title: "aaa" },
+  Home: { screen: LoginView },
   Profile: ProfileScreen
 });
 
