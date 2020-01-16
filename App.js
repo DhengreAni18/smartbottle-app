@@ -11,11 +11,12 @@ import {
 } from 'react-native';
 
 import LoginView from './src/components/login';
+import LoginForm from './src/components/login';
 
 class App extends Component {
   render() {
     return (
-      <LoginView />
+      <LoginForm />
     );
   }
 }

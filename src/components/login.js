@@ -9,8 +9,26 @@ import {
   Image,
   Alert
 } from "react-native";
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+
+class ProfileScreen extends Component {
+  static navigationOptions = {
+    title: "New Screen"
+  };
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <Text>Profile Screen</Text>
+      </View>
+    );
+  }
+}
 
 class LoginView extends Component {
+  static navigationOptions = {
+    title: "Login"
+  };
   constructor(props) {
     super(props);
     state = {
@@ -80,9 +98,9 @@ class LoginView extends Component {
         </TouchableHighlight>
 
         <Button
-        title="go to new screen"
-        
-      />
+          title="go to new screen"
+          onPress={() => this.props.navigation.navigate("Profile")}
+        />
       </View>
     );
   }
@@ -135,4 +153,16 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LoginView;
+const AppNavigator = createStackNavigator({
+  Home: { screen: LoginView, title: "aaa" },
+  Profile: ProfileScreen
+});
+
+const AppContainer = createAppContainer(AppNavigator);
+export default class LoginForm extends Component {
+  render() {
+    return <AppContainer />;
+  }
+}
+
+// export default LoginView;
