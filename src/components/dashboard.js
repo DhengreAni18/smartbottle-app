@@ -19,12 +19,18 @@ class ProfileScreen extends Component {
   };
 
   state = {
-    modalVisible: false
+    modalVisible: false,
+    modalVisible0: false
   };
 
   setModalVisible(visible) {
     this.setState({ modalVisible: visible });
   }
+
+  setModalVisible0(visible) {
+    this.setState({ modalVisible0: visible });
+  }
+
   render() {
     let styles = StyleSheet.create({
       backgroundImage: {
@@ -39,17 +45,48 @@ class ProfileScreen extends Component {
     return (
       <ScrollView>
         <Grid>
-          <Row style={{ height: 200, backgroundColor: "#ededed" }}>
-            <Col style={{ margin: 10 }}>
-              <Text>Bottle ID :</Text>
-            </Col>
-            <Col>
-              <Image
-                source={require("../images/bottle.png")}
-                style={styles.backgroundImage}
-              />
-            </Col>
-          </Row>
+          <Modal
+            animationType="slide"
+            transparent={false}
+            visible={this.state.modalVisible0}
+            onRequestClose={() => {
+              this.setModalVisible0(!this.state.modalVisible0);
+            }}
+          >
+            <View style={{ marginTop: 22 }}>
+              <View>
+                <Text>Hello World!</Text>
+
+                <TouchableHighlight
+                  onPress={() => {
+                    this.setModalVisible0(!this.state.modalVisible0);
+                  }}
+                >
+                  <Text>Hide Modal</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+          </Modal>
+
+          <TouchableHighlight
+            onPress={() => {
+              this.setModalVisible0(true);
+            }}
+          >
+            <Row style={{ height: 200, backgroundColor: "#ededed" }}>
+              <Col style={{ margin: 10 }}>
+                <Text style={{ color: "blue" }}>Status :</Text>
+                <Text>Bottle ID :</Text>
+                <Text>Current Percentage :</Text>
+              </Col>
+              <Col>
+                <Image
+                  source={require("../images/bottle.png")}
+                  style={styles.backgroundImage}
+                />
+              </Col>
+            </Row>
+          </TouchableHighlight>
 
           <Modal
             animationType="slide"
@@ -80,24 +117,21 @@ class ProfileScreen extends Component {
             }}
           >
             <Row style={{ height: 200, backgroundColor: "#FFFFFF" }}>
-            <Col style={{ margin: 10 }}>
-              <Text>Bottle ID :</Text>
-            </Col>
-            <Col>
-              <Image
-                source={require("../images/bottle.png")}
-                style={styles.backgroundImage}
-              />
-            </Col>
-          </Row>
+              <Col style={{ margin: 10 }}>
+                <Text style={{ color: "blue" }}>Status :</Text>
+                <Text>Bottle ID :</Text>
+                <Text>Current Percentage :</Text>
+              </Col>
+              <Col>
+                <Image
+                  source={require("../images/bottle.png")}
+                  style={styles.backgroundImage}
+                />
+              </Col>
+            </Row>
           </TouchableHighlight>
 
-          <Row style={{ height: 200 }}>
-            <Text>Fixed width</Text>
-          </Row>
-          <Row style={{ height: 200 }}>
-            <View style={{ flex: 1, backgroundColor: "#6ED4C8" }}></View>
-          </Row>
+          <Row style={{ height: 200 }}></Row>
         </Grid>
       </ScrollView>
     );
