@@ -11,20 +11,20 @@ import {
 } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
+import axios from "axios";
 
-import ProfileScreen from './dashboard';
-
+import ProfileScreen from "./dashboard";
 
 class LoginView extends Component {
   static navigationOptions = {
     title: "Login"
   };
 
-  first(){
-    Alert.alert('aa');
+  first() {
+    Alert.alert("aa");
     window.setInterval(first, 10000);
-   }
-   
+  }
+
   constructor(props) {
     super(props);
     state = {
@@ -32,6 +32,31 @@ class LoginView extends Component {
       password: ""
     };
   }
+
+  handleRequest() {
+
+      const payload = { username: this.state.email, password: this.state.password } 
+      console.log('asdasd');
+      axios
+      .post('http://192.168.43.179:8000/api/accounts/auth/login/', payload)
+      .then(response => {
+        const { token, user } = response.data;
+  
+        // We set the returned token as the default authorization header
+        axios.defaults.headers.common.Authorization = `Token ${token}`;
+        console.log('Login done');
+        console.log(payload.username);
+        // Navigate to the home screen
+        console.log(token);
+        console.log(response.data);
+        this.props.navigation.navigate("Profile");
+      })
+      .catch(error => console.log(error));
+    
+    
+    
+}
+ 
 
   onClickListener = viewId => {
     Alert.alert("Alert", "Button pressed " + viewId);
@@ -74,23 +99,9 @@ class LoginView extends Component {
 
         <TouchableHighlight
           style={[styles.buttonContainer, styles.loginButton]}
-          onPress={() => this.onClickListener("login")}
+          onPress={this.handleRequest.bind(this)}
         >
           <Text style={styles.loginText}>Login</Text>
-        </TouchableHighlight>
-
-        <TouchableHighlight
-          style={styles.buttonContainer}
-          onPress={() => this.onClickListener("restore_password")}
-        >
-          <Text>Forgot your password?</Text>
-        </TouchableHighlight>
-
-        <TouchableHighlight
-          style={styles.buttonContainer}
-          onPress={() => this.onClickListener("register")}
-        >
-          <Text>Register</Text>
         </TouchableHighlight>
 
         <Button

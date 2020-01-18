@@ -1,7 +1,14 @@
 import React, { Component } from "react";
-import { Modal, Text, TouchableHighlight, View, Alert } from "react-native";
+import {
+  Modal,
+  TextInput,
+  Text,
+  TouchableHighlight,
+  View,
+  Alert
+} from "react-native";
 import { StyleSheet, Image, TouchableOpacity } from "react-native";
-// import FormView from './form';
+import Form from "./form";
 
 export default class Add extends Component {
   SampleFunction = () => {
@@ -27,22 +34,14 @@ export default class Add extends Component {
             this.setModalVisible(!this.state.modalVisible);
           }}
         >
-          <View style={{ marginTop: 22 }}>
-            <View>
-              <FormView />
-              <TouchableHighlight
-                onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}
-              >
-                <Text>Hide Modal</Text>
-              </TouchableHighlight>
-            </View>
+          <Text style={{fontSize:25,textAlign:"center"}}>ADD PATIENT FORM</Text>
+          <View style={{ marginTop: 100, marginLeft: 30,fontWeight: 'bold' }}>
+            <Form />
           </View>
         </Modal>
 
         <TouchableOpacity
-          activeOpacity={0.5}
+          activeOpacity={0.7}
           onPress={() => {
             this.setModalVisible(true);
           }}
@@ -63,6 +62,7 @@ export default class Add extends Component {
 
 const styles = StyleSheet.create({
   MainContainer: {
+    
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
   },
 
   TouchableOpacityStyle: {
+    zIndex: 1,
     position: "absolute",
     width: 50,
     height: 50,
@@ -80,8 +81,9 @@ const styles = StyleSheet.create({
   },
 
   FloatingButtonStyle: {
+    
     resizeMode: "contain",
-    width: 50,
-    height: 50
+    width: 60,
+    height: 60
   }
 });

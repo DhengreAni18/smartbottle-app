@@ -18,14 +18,15 @@ import Add from "./add";
 
 class ProfileScreen extends Component {
   static navigationOptions = {
-    title: "Dashboard"
+    title: "Dashboard",
+    headerLeft: null
   };
 
   state = {
     albums: []
   };
 
-  componentWillMount() {
+  componentDidMount() {
     //Run as the app starts
     axios
       .get("http://192.168.43.179:8000/api/get_patients_list/")
