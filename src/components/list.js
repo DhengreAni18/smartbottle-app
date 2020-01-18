@@ -20,29 +20,6 @@ const AlbumDetail = ({ album }) => {
   return (
     <ScrollView>
       <Grid>
-        {/* <Modal
-              animationType="slide"
-              transparent={false}
-              visible={this.state.modalVisible0}
-              onRequestClose={() => {
-                this.setModalVisible0(!this.state.modalVisible0);
-              }}
-            >
-              <View style={{ marginTop: 22 }}>
-                <View>
-                  <Text>Hello World!</Text>
-    
-                  <TouchableHighlight
-                    onPress={() => {
-                      this.setModalVisible0(!this.state.modalVisible0);
-                    }}
-                  >
-                    <Text>Hide Modal</Text>
-                  </TouchableHighlight>
-                </View>
-              </View>
-            </Modal> */}
-
         <TouchableHighlight
           onPress={() => {
             Alert.alert("Details", "Patient ID " + ": " + JSON.stringify(id), [

@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import axios from "axios";
 import AlbumDetail from "./list";
+import Add from "./add";
 
 class ProfileScreen extends Component {
   static navigationOptions = {
@@ -37,7 +38,12 @@ class ProfileScreen extends Component {
   }
 
   render() {
-    return <ScrollView>{this.renderAlbums()}</ScrollView>;
+    return (
+      <View style={{ flex: 1 }}>
+        <ScrollView>{this.renderAlbums()}</ScrollView>
+        <Add />
+      </View>
+    );
   }
 }
 
