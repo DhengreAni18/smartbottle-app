@@ -19,6 +19,12 @@ class LoginView extends Component {
   static navigationOptions = {
     title: "Login"
   };
+
+  first(){
+    Alert.alert('aa');
+    window.setInterval(first, 10000);
+   }
+   
   constructor(props) {
     super(props);
     state = {
