@@ -12,6 +12,7 @@ import {
   ScrollView
 } from "react-native";
 import axios from "axios";
+
 import AlbumDetail from "./list";
 import Add from "./add";
 
@@ -27,7 +28,7 @@ class ProfileScreen extends Component {
   componentWillMount() {
     //Run as the app starts
     axios
-      .get("http://192.168.43.179:8000/get_patients_list/")
+      .get("http://192.168.43.179:8000/api/get_patients_list/")
       .then(response => this.setState({ albums: response.data }));
   }
 
