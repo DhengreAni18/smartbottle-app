@@ -12,6 +12,7 @@
     "axios": "^0.19.1",
     "expo": "^36.0.2",
     "native-base": "^2.13.8",
+    "pushy-react-native": "^1.0.14",
     "react": "16.8.6",
     "react-cross-form": "^1.2.12",
     "react-native": "0.60.3",

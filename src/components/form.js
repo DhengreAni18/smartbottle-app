@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Button, TextInput, StyleSheet, ScrollView } from "react-native";
+import { View, Button, TextInput, StyleSheet, ScrollView, Alert } from "react-native";
 import axios from "axios";
 
 export default class Form extends React.Component {
@@ -39,7 +39,7 @@ export default class Form extends React.Component {
       .then(response => {
         // We set the returned token as the default authorization header
         console.log("post from form done");
-        Alert.alert('Success', 'Patient details added Successfully')
+        Alert.alert('Success', 'Patient details added Successfully');
         console.log(response.data);
       })
       .catch(error => console.log(error));
