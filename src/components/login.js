@@ -34,29 +34,41 @@ class LoginView extends Component {
   }
 
   handleRequest() {
-
-      const payload = { username: this.state.email, password: this.state.password } 
-      console.log('asdasd');
+    if (this.state == null) {
+      Alert.alert("Error", "Form cannot be empty");
+    } else if (this.state.password == null) {
+      Alert.alert("Error", "Password cannot be empty");
+    } else if (this.state.email == null) {
+      Alert.alert("Error", "Username cannot be empty");
+    } else {
+      const payload = {
+        username: this.state.email,
+        password: this.state.password
+      };
+      console.log("asdasd");
       axios
-      .post('http://192.168.43.179:8000/api/accounts/auth/login/', payload)
-      .then(response => {
-        const { token, user } = response.data;
-  
-        // We set the returned token as the default authorization header
-        axios.defaults.headers.common.Authorization = `Token ${token}`;
-        console.log('Login done');
-        console.log(payload.username);
-        // Navigate to the home screen
-        console.log(token);
-        console.log(response.data);
-        this.props.navigation.navigate("Profile");
-      })
-      .catch(error => console.log(error));
-    
-    
-    
-}
- 
+        .post("http://192.168.43.179:8000/api/accounts/auth/login/", payload)
+        .then(response => {
+          const { token, user } = response.data;
+
+          // We set the returned token as the default authorization header
+          axios.defaults.headers.common.Authorization = `Token ${token}`;
+
+          console.log("Login done");
+          console.log(payload.username);
+          // Navigate to the home screen
+          console.log(token);
+          console.log(response.data);
+          this.props.navigation.navigate("Profile");
+        })
+        .catch(error => {
+          console.log(error);
+          if (error) {
+            Alert.alert("Invalid", "Enter valid Username or Password");
+          }
+        });
+    }
+  }
 
   onClickListener = viewId => {
     Alert.alert("Alert", "Button pressed " + viewId);
@@ -74,8 +86,7 @@ class LoginView extends Component {
           />
           <TextInput
             style={styles.inputs}
-            placeholder="Email"
-            keyboardType="email-address"
+            placeholder="Username"
             underlineColorAndroid="transparent"
             onChangeText={email => this.setState({ email })}
           />
