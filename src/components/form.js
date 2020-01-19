@@ -23,26 +23,39 @@ export default class Form extends React.Component {
       bed_number
     } = this.state;
 
-    const payload = {
-      name: name,
-      age: parseInt(age),
-      bottle: parseInt(bottle),
-      disease: disease,
-      room_number: parseInt(room_number),
-      bed_number: parseInt(bed_number)
-    };
-    console.log("asdasd");
-    console.log(payload);
+    if (this.state == undefined) {
+      Alert.alert("Error", "Form cannot be empty");
+    }
+    else {
 
-    axios
-      .post("http://192.168.43.179:8000/api/get_patients_list/", payload)
-      .then(response => {
-        // We set the returned token as the default authorization header
-        console.log("post from form done");
-        Alert.alert('Success', 'Patient details added Successfully');
-        console.log(response.data);
-      })
-      .catch(error => console.log(error));
+      const payload = {
+        name: name,
+        age: parseInt(age),
+        bottle: parseInt(bottle),
+        disease: disease,
+        room_number: parseInt(room_number),
+        bed_number: parseInt(bed_number)
+      };
+      
+      console.log("asdasd");
+      console.log(payload);
+  
+      axios
+        .post("http://192.168.43.179:8000/api/get_patients_list/", payload)
+        .then(response => {
+          // We set the returned token as the default authorization header
+          console.log("post from form done");
+          Alert.alert('Success', 'Patient details added Successfully');
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+          if (error) {
+            Alert.alert("Invalid", "Enter all details");
+          }
+        });
+    }
+    
   };
 
   render() {
